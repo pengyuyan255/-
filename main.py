@@ -5,6 +5,9 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
+import http
+import json
+import urllib
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
@@ -45,6 +48,17 @@ def get_words():
     return get_words()
   return words.json()['data']['text']
 
+def get_caihongpi():
+    conn = http.client.HTTPSConnection('api.tianapi.com')  # 接口域名
+    params = urllib.parse.urlencode({'key': '69b5f3f9a6567bbe35da7b53e1f0b79e'})
+    headers = {'Content-type': 'application/x-www-form-urlencoded'}
+    conn.request('POST', '/caihongpi/index', params, headers)
+    res = conn.getresponse()
+    json1 = json.loads(res.read().decode('utf-8'))
+    # print(type(json1))
+    # print(json1['newslist'][0]['content'])
+    return json1['newslist'][0]['content']
+  
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
@@ -53,7 +67,15 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature, highest, lowest = get_weather()
-data = {"date":{"value":get_date(),"color":get_random_color()},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"words":{"value":get_words(),"color":get_random_color()},"highest": {"value":highest,"color":get_random_color()},"lowest":{"value":lowest, "color":get_random_color()}}
+data = {"date": {"value": get_date(), "color": get_random_color()},
+        "weather": {"value": wea, "color": get_random_color()},
+        "temperature": {"value": temperature, "color": get_random_color()},
+        "love_days": {"value": get_count(), "color": get_random_color()},
+        "birthday_left": {"value": get_birthday(), "color": get_random_color()},
+        "words": {"value": get_words(), "color": get_random_color()},
+        "highest": {"value": highest, "color": get_random_color()},
+        "lowest": {"value": lowest, "color": get_random_color()},
+        "caihongpi":{"value":get_caihongpi(), "color": get_random_color()}}
 count = 0
 for user_id in user_ids:
   res = wm.send_template(user_id, template_id, data)
