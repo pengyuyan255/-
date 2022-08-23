@@ -10,15 +10,25 @@ import json
 import urllib
 
 today = datetime.now()
-start_date = os.environ['START_DATE']
-city = os.environ['CITY']
-birthday = os.environ['BIRTHDAY']
+# start_date = os.environ['START_DATE']
+# city = os.environ['CITY']
+# birthday = os.environ['BIRTHDAY']
+#
+# app_id = os.environ["APP_ID"]
+# app_secret = os.environ["APP_SECRET"]
+#
+# user_ids = os.environ["USER_ID"].split("\n")
+# template_id = os.environ["TEMPLATE_ID"]
 
-app_id = os.environ["APP_ID"]
-app_secret = os.environ["APP_SECRET"]
+start_date = "2019-12-08"
+city = "武汉"
+birthday = "12-08"
 
-user_ids = os.environ["USER_ID"].split("\n")
-template_id = os.environ["TEMPLATE_ID"]
+app_id = "wx7be3bcab0e38bcf7"
+app_secret = "b3fbb0b7af42b1aaa84498cbdb446ef0"
+
+user_ids = ["o0big6oIc60RVddWiYuKEeI5uBPE"]
+template_id = "Sii28sRYm1JAsWWp9YSzFXxH6qrW6Kjv3PJ47l2m274"
 
 def get_date():
   day = date.today()
