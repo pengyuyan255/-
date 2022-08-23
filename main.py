@@ -27,7 +27,7 @@ birthday = "12-08"
 app_id = "wx7be3bcab0e38bcf7"
 app_secret = "b3fbb0b7af42b1aaa84498cbdb446ef0"
 
-user_ids = ["o0big6oIc60RVddWiYuKEeI5uBPE"]
+user_ids = ["o0big6oIc60RVddWiYuKEeI5uBPE","o0big6msEmJ7kcyZPaTttjC-v0Lw"]
 template_id = "Sii28sRYm1JAsWWp9YSzFXxH6qrW6Kjv3PJ47l2m274"
 
 def get_date():
