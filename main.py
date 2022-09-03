@@ -10,18 +10,8 @@ import json
 import urllib
 
 today = datetime.now()
-# start_date = os.environ['START_DATE']
-# city = os.environ['CITY']
-# birthday = os.environ['BIRTHDAY']
-#
-# app_id = os.environ["APP_ID"]
-# app_secret = os.environ["APP_SECRET"]
-#
-# user_ids = os.environ["USER_ID"].split("\n")
-# template_id = os.environ["TEMPLATE_ID"]
-
 start_date = "2019-12-08"
-city = "武汉"
+city = "内江"
 birthday = "12-08"
 
 app_id = "wx7be3bcab0e38bcf7"
@@ -65,8 +55,6 @@ def get_caihongpi():
     conn.request('POST', '/caihongpi/index', params, headers)
     res = conn.getresponse()
     json1 = json.loads(res.read().decode('utf-8'))
-    # print(type(json1))
-    # print(json1['newslist'][0]['content'])
     return json1['newslist'][0]['content']
   
 def get_random_color():
