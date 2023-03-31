@@ -27,10 +27,10 @@ def get_date():
   return str(day) + ' ' + week
 
 def get_weather():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=37773662&appsecret=8XLe5nri&city=" + city
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
+  ret = [res['wea'],res['tem'],res['tem1'],res['tem2']]
+  return ret
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
